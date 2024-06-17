@@ -20,6 +20,60 @@ class MathController {
         if(!ehNumero(numberOne) || !ehNumero(numberTwo)) throw UnsupportedMathOperationException("Porfavor coloque um numero valido") //criando validação
         return converterDouble(numberOne) + converterDouble(numberTwo)
     }
+
+        @RequestMapping(value = ["/sub/{numberOne}/{numberTwo}"])
+    fun sub(
+        @PathVariable(value = "numberOne") numberOne: String?,
+        @PathVariable(value = "numberTwo") numberTwo: String?
+    ): Double {
+        if(!ehNumero(numberOne) || !ehNumero(numberTwo)) throw UnsupportedMathOperationException("Porfavor coloque um numero valido")
+        return converterDouble(numberOne) - converterDouble(numberTwo)
+    }
+
+         @RequestMapping(value = ["/div/{numberOne}/{numberTwo}"])
+        fun divisao(
+        @PathVariable(value = "numberOne") numberOne: String?,
+        @PathVariable(value = "numberTwo") numberTwo: String?
+    ): Double {
+        if(!ehNumero(numberOne) || !ehNumero(numberTwo)) throw UnsupportedMathOperationException("Porfavor coloque um numero valido")
+        return converterDouble(numberOne) / converterDouble(numberTwo)
+    }
+
+    @RequestMapping(value = ["/mult/{numberOne}/{numberTwo}"])
+        fun mult(
+        @PathVariable(value = "numberOne") numberOne: String?,
+        @PathVariable(value = "numberTwo") numberTwo: String?
+    ): Double {
+        if(!ehNumero(numberOne) || !ehNumero(numberTwo)) throw UnsupportedMathOperationException("Porfavor coloque um numero valido")
+        return converterDouble(numberOne) * converterDouble(numberTwo)
+    }
+
+    @RequestMapping(value = ["/raiz/{numberOne}"])
+        fun raiz(
+        @PathVariable(value = "numberOne") numberOne: String?
+    ): Double {
+        if(!ehNumero(numberOne)) throw UnsupportedMathOperationException("Porfavor coloque um numero valido")
+        return Math.sqrt(converterDouble(numberOne))
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public fun ehNumero(numero: String?): Boolean{
         if (numero.isNullOrBlank()) return false
         val num = numero.replace(",".toRegex(),".")
