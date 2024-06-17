@@ -22,9 +22,9 @@ class PersonController {
     @Autowired
     private lateinit var service: PersonService
 
-    @RequestMapping(value = ["/{id}"], method = [RequestMethod.GET], produces = [MediaType.APPLICATION_JSON_VALUE]) //Serve para mapear um end point
+    @RequestMapping(method = [RequestMethod.GET], produces = [MediaType.APPLICATION_JSON_VALUE]) //Serve para mapear um end point
 
-    fun sum(@PathVariable(value = "id") id: Long): Person {
-        return service.findById(id)
+    fun findAll(): List<Person> {
+        return service.findAll()
     }
 }
