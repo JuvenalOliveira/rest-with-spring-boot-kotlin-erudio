@@ -1,5 +1,6 @@
 package br.com.erudio
 
+import br.com.erudio.exceptions.UnsupportedMathOperationException
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
@@ -16,7 +17,7 @@ class MathController {
         @PathVariable(value = "numberOne") numberOne: String?, //@PathVariable permite que o controller lide com requesição parametrizadas
         @PathVariable(value = "numberTwo") numberTwo: String? //Como variaveis.
     ): Double {
-        if(!ehNumero(numberOne) || !ehNumero(numberTwo)) throw java.lang.Exception() //criando validação
+        if(!ehNumero(numberOne) || !ehNumero(numberTwo)) throw UnsupportedMathOperationException("Porfavor coloque um numero valido") //criando validação
         return converterDouble(numberOne) + converterDouble(numberTwo)
     }
     public fun ehNumero(numero: String?): Boolean{
