@@ -1,14 +1,13 @@
-package br.com.erudio
+package br.com.erudio.controller
 
 import br.com.erudio.exceptions.UnsupportedMathOperationException
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import java.util.concurrent.atomic.AtomicLong
 
-@RestController //criando um bean
-class MathController {
+//@RestController //criando um bean
+class MathController2 {
 
     val contador: AtomicLong = AtomicLong()
 
@@ -23,8 +22,8 @@ class MathController {
 
         @RequestMapping(value = ["/sub/{numberOne}/{numberTwo}"])
     fun sub(
-        @PathVariable(value = "numberOne") numberOne: String?,
-        @PathVariable(value = "numberTwo") numberTwo: String?
+            @PathVariable(value = "numberOne") numberOne: String?,
+            @PathVariable(value = "numberTwo") numberTwo: String?
     ): Double {
         if(!ehNumero(numberOne) || !ehNumero(numberTwo)) throw UnsupportedMathOperationException("Porfavor coloque um numero valido")
         return converterDouble(numberOne) - converterDouble(numberTwo)
@@ -32,8 +31,8 @@ class MathController {
 
          @RequestMapping(value = ["/div/{numberOne}/{numberTwo}"])
         fun divisao(
-        @PathVariable(value = "numberOne") numberOne: String?,
-        @PathVariable(value = "numberTwo") numberTwo: String?
+             @PathVariable(value = "numberOne") numberOne: String?,
+             @PathVariable(value = "numberTwo") numberTwo: String?
     ): Double {
         if(!ehNumero(numberOne) || !ehNumero(numberTwo)) throw UnsupportedMathOperationException("Porfavor coloque um numero valido")
         return converterDouble(numberOne) / converterDouble(numberTwo)
