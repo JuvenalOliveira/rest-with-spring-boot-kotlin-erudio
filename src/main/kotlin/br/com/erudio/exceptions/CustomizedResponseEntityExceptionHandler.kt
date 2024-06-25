@@ -24,7 +24,7 @@ class CustomizedResponseEntityExceptionHandler : ResponseEntityExceptionHandler(
         )
         return ResponseEntity<ExceptionResponse>(exceptioResponse, HttpStatus.INTERNAL_SERVER_ERROR)//Classe de erro generica
 
-    }   @ExceptionHandler(RescourceNotFoundException::class)
+    }   @ExceptionHandler(ResourceNotFoundException::class)
     fun handleRescourceNotFoundExceptions(ex: Exception, request: WebRequest): ResponseEntity<ExceptionResponse>{
         val exceptioResponse = ExceptionResponse(
             Date(),
