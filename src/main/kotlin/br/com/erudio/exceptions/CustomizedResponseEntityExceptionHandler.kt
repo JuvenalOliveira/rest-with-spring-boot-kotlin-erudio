@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.context.request.WebRequest
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler
-import java.lang.*
 import java.util.*
 import kotlin.Exception
 
@@ -25,13 +24,13 @@ class CustomizedResponseEntityExceptionHandler : ResponseEntityExceptionHandler(
         )
         return ResponseEntity<ExceptionResponse>(exceptioResponse, HttpStatus.INTERNAL_SERVER_ERROR)//Classe de erro generica
 
-    }   @ExceptionHandler(UnsupportedMathOperationException::class)
-    fun handleBadRequestExceptions(ex: Exception, request: WebRequest): ResponseEntity<ExceptionResponse>{
+    }   @ExceptionHandler(RescourceNotFoundException::class)
+    fun handleRescourceNotFoundExceptions(ex: Exception, request: WebRequest): ResponseEntity<ExceptionResponse>{
         val exceptioResponse = ExceptionResponse(
             Date(),
             ex.message,
             request.getDescription(false)
         )
-        return ResponseEntity<ExceptionResponse>(exceptioResponse, HttpStatus.BAD_REQUEST)
+        return ResponseEntity<ExceptionResponse>(exceptioResponse, HttpStatus.NOT_FOUND)
     }
 }
