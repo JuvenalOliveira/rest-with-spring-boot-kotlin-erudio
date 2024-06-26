@@ -3,6 +3,7 @@ package br.com.erudio.services
 import br.com.erudio.exceptions.ResourceNotFoundException
 import br.com.erudio.model.Person
 import br.com.erudio.repository.PersonRepository
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.context.config.ConfigDataResourceNotFoundException
 import org.springframework.stereotype.Service
 import java.util.concurrent.atomic.AtomicLong
@@ -11,18 +12,19 @@ import java.util.logging.Logger
 @Service
 class PersonService {
 
+    @Autowired // serve para inicializar o lateinit
     private lateinit var repository: PersonRepository
 
     private val logger = Logger.getLogger(PersonService::class.java.name)
 
     fun findAll(): List<Person>{ //vai listar todos os usuarios da lista
 
-        logger.info("Procurando uma pessoa")
+        logger.info("Finding all people!")
         return repository.findAll()
     }
 
     fun findById(id: Long): Person{ //procura uma pessoa por ID
-        logger.info("Procurando uma pessoa") //logger.info serve para enviar uma mensagem
+        logger.info("Finding one person!") //logger.info serve para enviar uma mensagem
 
         return repository.findById(id)
             .orElseThrow { ResourceNotFoundException("No records found for this ID!") }
@@ -33,14 +35,14 @@ class PersonService {
     }
 
     fun update(person: Person) : Person{
-        logger.info("Updating one person with ID ${person.id}")
+        logger.info("Updating one person with ID ${person.id}!")
         val entity = repository.findById(person.id)
             .orElseThrow { ResourceNotFoundException("No records found for this ID!") }
 
-        person.primeiroNome = person.primeiroNome
-        person.ultimoNome = person.ultimoNome
-        person.addres = person.addres
-        person.gender = person.gender
+        entity.primeiroNome = person.primeiroNome
+        entity.ultimoNome = person.ultimoNome
+        entity.addres = person.addres
+        entity.gender = person.gender
         return repository.save(entity)
     }
 
