@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController
 import java.util.concurrent.atomic.AtomicLong
 
 @RestController //criando um bean
-@RequestMapping("/person")
+@RequestMapping("/api/person/v1")
 class PersonController {
 
     val contador: AtomicLong = AtomicLong()
