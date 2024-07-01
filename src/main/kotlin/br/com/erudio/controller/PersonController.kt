@@ -24,7 +24,7 @@ class PersonController {
 
     @Autowired
     private lateinit var service: PersonService
-/*
+
     @GetMapping(produces = [MediaType.APPLICATION_JSON_VALUE]) //GetMapping é um RequestMapping vom o request.method ja inserido.
     fun findAll(): List<PersonVO> {
         return service.findAll()
@@ -54,5 +54,5 @@ class PersonController {
 //@RequestBody serve para enviar parametros via post.
 
 
- */
+
 }
